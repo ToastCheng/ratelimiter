@@ -2,7 +2,6 @@ package ratelimiter
 
 import (
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 )
@@ -37,7 +36,6 @@ func (h rateLimitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "failed to decode ip: %v", err)
 		return
 	}
-	log.Printf("get request from: %s", ip)
 
 	// if the ip address has no record yet, initialize a Record for it.
 	if _, exists := h.records[ip]; !exists {
